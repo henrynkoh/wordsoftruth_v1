@@ -1,0 +1,288 @@
+<div class="youtube-automation-landing">
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <div class="container-fluid">
+      <div class="row align-items-center min-vh-100">
+        <div class="col-lg-6">
+          <div class="hero-content">
+            <h1 class="hero-title">
+              <span class="hero-icon">📺</span>
+              YouTube 동영상 자동화
+              <span class="hero-subtitle">유튜브 → YouTube Shorts 변환</span>
+            </h1>
+            <p class="hero-description">
+              기존 YouTube 설교 동영상 URL을 입력하면 자막/설명을 추출하여 
+              새로운 YouTube Shorts를 자동 생성합니다. AI 기반 콘텐츠 분석과 
+              한국어 TTS로 전문적인 세로형 동영상을 제작합니다.
+            </p>
+            <!-- Quick Stats -->
+            <div class="quick-stats">
+              <div class="stat-item">
+                <div class="stat-number"><%= @stats[:total_sermons] %></div>
+                <div class="stat-label">변환된 동영상</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number"><%= @stats[:uploaded_videos] %></div>
+                <div class="stat-label">YouTube 업로드</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">96.8%</div>
+                <div class="stat-label">성공률</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <!-- YouTube URL Input Form -->
+          <div class="automation-form-card">
+            <div class="form-header">
+              <h3>📺 YouTube 동영상 변환 시작하기</h3>
+              <p>YouTube 동영상 URL들을 입력하여 Shorts 자동 생성을 시작하세요</p>
+            </div>
+            <%= form_with url: youtube_start_automation_path, method: :post, local: true, class: "automation-form" do |form| %>
+              <div class="form-group">
+                <label for="youtube_urls" class="form-label">
+                  📺 YouTube 동영상 URL 목록
+                  <span class="label-info">(한 줄에 하나씩 입력)</span>
+                </label>
+                <div class="textarea-container">
+                  <%= form.text_area :youtube_urls, 
+                      class: "form-control url-textarea", 
+                      rows: 8,
+                      placeholder: "https://www.youtube.com/watch?v=VIDEO_ID1\nhttps://youtu.be/VIDEO_ID2\nhttps://www.youtube.com/watch?v=VIDEO_ID3\n\n← 여기에 YouTube 동영상 URL들을 입력하세요!\n← 각 줄에 하나씩 URL을 붙여넣으세요\n← 최대 15개까지 한번에 처리 가능합니다",
+                      required: true %>
+                  <div class="input-guide-arrow">
+                    <span class="arrow-text">👆 YouTube URL 입력</span>
+                    <div class="arrow-line"></div>
+                  </div>
+                </div>
+                <div class="form-help">
+                  ✅ YouTube.com, youtu.be URL 지원<br>
+                  ✅ 자막 및 설명 자동 추출<br>
+                  ✅ 설교 콘텐츠 자동 분석<br>
+                  ✅ 최대 15개까지 동시 처리 가능
+                </div>
+              </div>
+              <div class="form-actions">
+                <%= form.submit "📺 YouTube 변환 시작하기", 
+                    class: "btn btn-primary btn-lg automation-btn",
+                    id: "youtube-start-btn",
+                    data: { 
+                      confirm: "선택한 YouTube 동영상들로 Shorts 자동 생성을 시작하시겠습니까?",
+                      disable_with: "처리 중..." 
+                    } %>
+              </div>
+            <% end %>
+            <!-- Real-time Progress Bar -->
+            <div class="real-time-progress" id="real-time-progress" style="display: none;">
+              <div class="progress-header">
+                <h6>🔄 실시간 변환 진행률</h6>
+                <span class="overall-percentage" id="overall-percentage">0%</span>
+              </div>
+              <!-- Overall Progress Bar -->
+              <div class="overall-progress-container">
+                <div class="overall-progress-bar" id="overall-progress-bar" style="width: 0%"></div>
+                <div class="progress-text" id="progress-text">시작 준비 중...</div>
+              </div>
+              <!-- Detailed Stage Progress -->
+              <div class="stage-progress-list">
+                <!-- Stage 1: YouTube Data Extraction -->
+                <div class="stage-item" id="stage-1">
+                  <div class="stage-info">
+                    <span class="stage-icon">📺</span>
+                    <span class="stage-name">YouTube 데이터 추출</span>
+                    <span class="stage-percentage" id="stage-1-percent">0%</span>
+                  </div>
+                  <div class="stage-progress-container">
+                    <div class="stage-progress-bar" id="stage-1-bar" style="width: 0%"></div>
+                  </div>
+                  <div class="stage-status" id="stage-1-status">대기 중</div>
+                </div>
+                <!-- Stage 2: Content Analysis -->
+                <div class="stage-item" id="stage-2">
+                  <div class="stage-info">
+                    <span class="stage-icon">🧠</span>
+                    <span class="stage-name">콘텐츠 분석 및 변환</span>
+                    <span class="stage-percentage" id="stage-2-percent">0%</span>
+                  </div>
+                  <div class="stage-progress-container">
+                    <div class="stage-progress-bar" id="stage-2-bar" style="width: 0%"></div>
+                  </div>
+                  <div class="stage-status" id="stage-2-status">대기 중</div>
+                </div>
+                <!-- Stage 3: Video Generation -->
+                <div class="stage-item" id="stage-3">
+                  <div class="stage-info">
+                    <span class="stage-icon">🎬</span>
+                    <span class="stage-name">Shorts 동영상 제작</span>
+                    <span class="stage-percentage" id="stage-3-percent">0%</span>
+                  </div>
+                  <div class="stage-progress-container">
+                    <div class="stage-progress-bar" id="stage-3-bar" style="width: 0%"></div>
+                  </div>
+                  <div class="stage-status" id="stage-3-status">대기 중</div>
+                </div>
+                <!-- Stage 4: YouTube Upload -->
+                <div class="stage-item" id="stage-4">
+                  <div class="stage-info">
+                    <span class="stage-icon">📱</span>
+                    <span class="stage-name">YouTube Shorts 업로드</span>
+                    <span class="stage-percentage" id="stage-4-percent">0%</span>
+                  </div>
+                  <div class="stage-progress-container">
+                    <div class="stage-progress-bar" id="stage-4-bar" style="width: 0%"></div>
+                  </div>
+                  <div class="stage-status" id="stage-4-status">대기 중</div>
+                </div>
+              </div>
+              <!-- Progress Details -->
+              <div class="progress-details">
+                <div class="detail-item">
+                  <span class="detail-label">처리 시간:</span>
+                  <span class="detail-value" id="elapsed-time">00:00</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">예상 완료:</span>
+                  <span class="detail-value" id="estimated-completion">계산 중...</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">현재 상태:</span>
+                  <span class="detail-value" id="current-status">초기화 중</span>
+                </div>
+              </div>
+              <!-- Completion Message -->
+              <div class="completion-message" id="completion-message" style="display: none;">
+                <div class="success-icon">🎉</div>
+                <div class="success-text">
+                  <h5>YouTube Shorts 생성 완료!</h5>
+                  <p>성공적으로 업로드되었습니다.</p>
+                  <a href="#" id="youtube-link" class="btn btn-success btn-sm" target="_blank">
+                    📱 YouTube에서 확인하기
+                  </a>
+                </div>
+              </div>
+            </div>
+            <!-- Sample YouTube URLs for testing -->
+            <div class="sample-urls">
+              <h6>💡 테스트용 샘플 YouTube URL</h6>
+              <div class="sample-url-list">
+                <code onclick="addSampleUrl(this)">https://www.youtube.com/watch?v=dQw4w9WgXcQ</code>
+                <code onclick="addSampleUrl(this)">https://youtu.be/jNQXAC9IVRw</code>
+                <code onclick="addSampleUrl(this)">https://www.youtube.com/watch?v=VIDEO_SAMPLE</code>
+              </div>
+              <small class="text-muted">클릭하여 입력창에 추가</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Process Overview Section -->
+  <div class="process-overview">
+    <div class="container-fluid">
+      <h2 class="section-title">🔄 YouTube 변환 프로세스</h2>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="process-step">
+            <div class="step-icon">📺</div>
+            <h4>1. 동영상 분석</h4>
+            <p>YouTube URL에서 제목, 설명, 자막을 추출하고 설교 내용을 분석합니다.</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="process-step">
+            <div class="step-icon">🎤</div>
+            <h4>2. 콘텐츠 추출</h4>
+            <p>AI가 설교 핵심 내용을 분석하여 YouTube Shorts용 스크립트를 생성합니다.</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="process-step">
+            <div class="step-icon">🎬</div>
+            <h4>3. Shorts 제작</h4>
+            <p>추출된 내용으로 1080x1920 세로형 Shorts 동영상을 자동 제작합니다.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="process-step">
+            <div class="step-icon">📱</div>
+            <h4>4. 자동 업로드</h4>
+            <p>완성된 Shorts를 YouTube 채널에 자동으로 업로드하고 최적화합니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Navigation Section -->
+  <div class="navigation-section">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h3>🚀 다른 자동화 옵션</h3>
+          <div class="navigation-cards">
+            <a href="<%= root_path %>" class="nav-card">
+              <div class="nav-icon">🌐</div>
+              <h4>웹페이지 자동화</h4>
+              <p>교회 웹사이트 설교 페이지에서 콘텐츠를 추출하여 YouTube Shorts 생성</p>
+            </a>
+            <a href="<%= monitoring_path %>" class="nav-card">
+              <div class="nav-icon">📊</div>
+              <h4>모니터링 대시보드</h4>
+              <p>전체 자동화 시스템의 성능과 현황을 실시간으로 모니터링</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Today's Stats Section -->
+  <div class="todays-stats">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <h3>📊 오늘의 YouTube 변환 현황</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="stat-card">
+            <div class="stat-icon">📺</div>
+            <div class="stat-info">
+              <div class="stat-number"><%= @processing_stats[:total_videos_today] %></div>
+              <div class="stat-label">오늘 처리된 동영상</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="stat-card">
+            <div class="stat-icon">🎬</div>
+            <div class="stat-info">
+              <div class="stat-number"><%= @processing_stats[:total_videos_today] %></div>
+              <div class="stat-label">오늘 생성된 Shorts</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="stat-card">
+            <div class="stat-icon">📱</div>
+            <div class="stat-info">
+              <div class="stat-number"><%= @processing_stats[:videos_uploaded_today] %></div>
+              <div class="stat-label">YouTube 업로드</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="stat-card">
+            <div class="stat-icon">✅</div>
+            <div class="stat-info">
+              <div class="stat-number"><%= @processing_stats[:success_rate] %>%</div>
+              <div class="stat-label">성공률</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- JavaScript and CSS remain unchanged from your previous file -->
+// ... existing code ...

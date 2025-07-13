@@ -1,0 +1,19 @@
+current directory: /Users/henryoh/Documents/saas/wordsoftruth-clean/gems/erb-5.0.1/ext/erb/escape
+/Users/henryoh/.rbenv/versions/3.2.2/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /Users/henryoh/Documents/saas/wordsoftruth-clean/gems/erb-5.0.1/ext/erb/escape
+make DESTDIR\= sitearchdir\=./.gem.20250708-41374-wp890k sitelibdir\=./.gem.20250708-41374-wp890k clean
+
+current directory: /Users/henryoh/Documents/saas/wordsoftruth-clean/gems/erb-5.0.1/ext/erb/escape
+make DESTDIR\= sitearchdir\=./.gem.20250708-41374-wp890k sitelibdir\=./.gem.20250708-41374-wp890k
+compiling escape.c
+linking shared-object erb/escape.bundle
+ld: warning: ignoring duplicate libraries: '-lruby.3.2'
+
+current directory: /Users/henryoh/Documents/saas/wordsoftruth-clean/gems/erb-5.0.1/ext/erb/escape
+make DESTDIR\= sitearchdir\=./.gem.20250708-41374-wp890k sitelibdir\=./.gem.20250708-41374-wp890k install
+/opt/homebrew/bin/ginstall -c -m 0755 escape.bundle ./.gem.20250708-41374-wp890k/erb
+
+current directory: /Users/henryoh/Documents/saas/wordsoftruth-clean/gems/erb-5.0.1/ext/erb/escape
+make DESTDIR\= sitearchdir\=./.gem.20250708-41374-wp890k sitelibdir\=./.gem.20250708-41374-wp890k clean

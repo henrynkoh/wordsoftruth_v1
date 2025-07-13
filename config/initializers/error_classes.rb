@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Load custom error classes for the application
-require_relative '../../app/errors/application_errors'
+# require_relative '../../app/errors/application_errors'
 
 # Configure error monitoring in production
 if Rails.env.production?

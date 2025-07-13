@@ -1,0 +1,19 @@
+current directory: /Users/henryoh/Documents/saas/wordsoftruth-clean/gems/racc-1.8.1/ext/racc/cparse
+/Users/henryoh/.rbenv/versions/3.2.2/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /Users/henryoh/Documents/saas/wordsoftruth-clean/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20250708-41374-rwqp5m sitelibdir\=./.gem.20250708-41374-rwqp5m clean
+
+current directory: /Users/henryoh/Documents/saas/wordsoftruth-clean/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20250708-41374-rwqp5m sitelibdir\=./.gem.20250708-41374-rwqp5m
+compiling cparse.c
+linking shared-object racc/cparse.bundle
+ld: warning: ignoring duplicate libraries: '-lruby.3.2'
+
+current directory: /Users/henryoh/Documents/saas/wordsoftruth-clean/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20250708-41374-rwqp5m sitelibdir\=./.gem.20250708-41374-rwqp5m install
+/opt/homebrew/bin/ginstall -c -m 0755 cparse.bundle ./.gem.20250708-41374-rwqp5m/racc
+
+current directory: /Users/henryoh/Documents/saas/wordsoftruth-clean/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20250708-41374-rwqp5m sitelibdir\=./.gem.20250708-41374-rwqp5m clean

@@ -1,0 +1,32 @@
+current directory: /Users/henryoh/Documents/saas/wordsoftruth-clean/gems/ruby-prof-1.7.2/ext/ruby_prof
+/Users/henryoh/.rbenv/versions/3.2.2/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /Users/henryoh/Documents/saas/wordsoftruth-clean/gems/ruby-prof-1.7.2/ext/ruby_prof
+make DESTDIR\= sitearchdir\=./.gem.20250708-41374-k21duj sitelibdir\=./.gem.20250708-41374-k21duj clean
+
+current directory: /Users/henryoh/Documents/saas/wordsoftruth-clean/gems/ruby-prof-1.7.2/ext/ruby_prof
+make DESTDIR\= sitearchdir\=./.gem.20250708-41374-k21duj sitelibdir\=./.gem.20250708-41374-k21duj
+compiling rp_allocation.c
+compiling rp_call_tree.c
+compiling rp_call_trees.c
+compiling rp_measure_allocations.c
+compiling rp_measure_memory.c
+compiling rp_measure_process_time.c
+compiling rp_measure_wall_time.c
+compiling rp_measurement.c
+compiling rp_method.c
+compiling rp_profile.c
+compiling rp_stack.c
+compiling rp_thread.c
+compiling ruby_prof.c
+linking shared-object ruby_prof.bundle
+ld: warning: -s is obsolete
+ld: warning: ignoring duplicate libraries: '-lruby.3.2'
+
+current directory: /Users/henryoh/Documents/saas/wordsoftruth-clean/gems/ruby-prof-1.7.2/ext/ruby_prof
+make DESTDIR\= sitearchdir\=./.gem.20250708-41374-k21duj sitelibdir\=./.gem.20250708-41374-k21duj install
+/opt/homebrew/bin/ginstall -c -m 0755 ruby_prof.bundle ./.gem.20250708-41374-k21duj
+
+current directory: /Users/henryoh/Documents/saas/wordsoftruth-clean/gems/ruby-prof-1.7.2/ext/ruby_prof
+make DESTDIR\= sitearchdir\=./.gem.20250708-41374-k21duj sitelibdir\=./.gem.20250708-41374-k21duj clean

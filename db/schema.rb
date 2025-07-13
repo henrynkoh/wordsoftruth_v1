@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_28_161500) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_07_065936) do
   create_table "audit_logs", force: :cascade do |t|
     t.string "auditable_type"
     t.integer "auditable_id"
@@ -80,11 +80,40 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_28_161500) do
     t.json "processing_metadata"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
     t.index ["created_at"], name: "index_text_notes_on_created_at"
     t.index ["note_type"], name: "index_text_notes_on_note_type"
+    t.index ["status", "created_at"], name: "index_text_notes_on_status_and_created_at"
     t.index ["status"], name: "index_text_notes_on_status"
     t.index ["theme"], name: "index_text_notes_on_theme"
+    t.index ["title"], name: "index_text_notes_on_title"
+    t.index ["user_id", "created_at"], name: "index_text_notes_on_user_and_created_at"
+    t.index ["user_id", "status", "created_at"], name: "index_text_notes_dashboard"
+    t.index ["user_id", "status"], name: "index_text_notes_on_user_and_status"
+    t.index ["user_id", "theme"], name: "index_text_notes_on_user_and_theme"
+    t.index ["user_id"], name: "index_text_notes_on_user_id"
+    t.index ["video_file_path"], name: "index_text_notes_on_video_file_path"
     t.index ["youtube_video_id"], name: "index_text_notes_on_youtube_video_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "provider", null: false
+    t.string "uid", null: false
+    t.string "email", null: false
+    t.string "name", null: false
+    t.string "avatar_url"
+    t.text "youtube_access_token"
+    t.text "youtube_refresh_token"
+    t.datetime "youtube_token_expires_at"
+    t.boolean "active", default: true, null: false
+    t.boolean "admin", default: false, null: false
+    t.datetime "last_sign_in_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["active"], name: "index_users_on_active"
+    t.index ["admin"], name: "index_users_on_admin"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
   end
 
   create_table "videos", force: :cascade do |t|
@@ -104,5 +133,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_28_161500) do
     t.index ["youtube_id"], name: "index_videos_on_youtube_id"
   end
 
+  add_foreign_key "text_notes", "users"
   add_foreign_key "videos", "sermons"
 end

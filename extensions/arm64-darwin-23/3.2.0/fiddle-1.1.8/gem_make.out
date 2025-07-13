@@ -1,0 +1,43 @@
+current directory: /Users/henryoh/Documents/saas/wordsoftruth-clean/gems/fiddle-1.1.8/ext/fiddle
+/Users/henryoh/.rbenv/versions/3.2.2/bin/ruby extconf.rb
+checking for --enable-debug-build option... no
+checking for ffi.h... yes
+checking for -lffi... yes
+libffi_version: 3.4.0
+checking for sys/mman.h... yes
+checking for link.h... no
+checking for dlfcn.h... yes
+checking for -ldl... yes
+checking for dlopen()... yes
+checking for dlclose()... yes
+checking for dlsym()... yes
+checking for dlerror()... yes
+checking for dlinfo()... no
+checking for RTLD_DI_LINKMAP in dlfcn.h... no
+checking for FFI_STDCALL in ffi.h... no
+checking signedness of size_t... unsigned
+checking for rb_str_to_interned_str()... yes
+creating Makefile
+
+current directory: /Users/henryoh/Documents/saas/wordsoftruth-clean/gems/fiddle-1.1.8/ext/fiddle
+make DESTDIR\= sitearchdir\=./.gem.20250708-41374-q1wzww sitelibdir\=./.gem.20250708-41374-q1wzww clean
+
+current directory: /Users/henryoh/Documents/saas/wordsoftruth-clean/gems/fiddle-1.1.8/ext/fiddle
+make DESTDIR\= sitearchdir\=./.gem.20250708-41374-q1wzww sitelibdir\=./.gem.20250708-41374-q1wzww
+compiling closure.c
+compiling conversions.c
+compiling fiddle.c
+compiling function.c
+compiling handle.c
+compiling memory_view.c
+compiling pinned.c
+compiling pointer.c
+linking shared-object fiddle.bundle
+ld: warning: ignoring duplicate libraries: '-lffi', '-lruby.3.2'
+
+current directory: /Users/henryoh/Documents/saas/wordsoftruth-clean/gems/fiddle-1.1.8/ext/fiddle
+make DESTDIR\= sitearchdir\=./.gem.20250708-41374-q1wzww sitelibdir\=./.gem.20250708-41374-q1wzww install
+/opt/homebrew/bin/ginstall -c -m 0755 fiddle.bundle ./.gem.20250708-41374-q1wzww
+
+current directory: /Users/henryoh/Documents/saas/wordsoftruth-clean/gems/fiddle-1.1.8/ext/fiddle
+make DESTDIR\= sitearchdir\=./.gem.20250708-41374-q1wzww sitelibdir\=./.gem.20250708-41374-q1wzww clean

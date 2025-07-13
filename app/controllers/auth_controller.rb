@@ -1,4 +1,8 @@
 class AuthController < ApplicationController
+  def sign_in
+    render plain: "Sign in page works!"
+  end
+
   def youtube_callback
     auth = request.env['omniauth.auth']
     if auth.present?
