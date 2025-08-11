@@ -81,6 +81,7 @@ GEM
       encryptor (~> 3.0.0)
     base64 (0.3.0)
     bcrypt (3.1.20)
+    bcrypt_pbkdf (1.1.1)
     bcrypt_pbkdf (1.1.1-arm64-darwin)
     benchmark (0.4.1)
     bigdecimal (3.2.2)
@@ -222,7 +223,7 @@ GEM
     jbuilder (2.13.0)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
-    json (2.12.2)
+    json (2.13.2)
     jwt (2.10.2)
       base64
     kamal (2.7.0)
@@ -278,6 +279,8 @@ GEM
     nio4r (2.7.4)
     nokogiri (1.18.8-arm64-darwin)
       racc (~> 1.4)
+    nokogiri (1.18.8-x86_64-linux-gnu)
+      racc (~> 1.4)
     oauth2 (2.0.12)
       faraday (>= 0.17.3, < 4.0)
       jwt (>= 1.0, < 4.0)
@@ -323,7 +326,7 @@ GEM
       nio4r (~> 2.0)
     raabro (1.4.0)
     racc (1.8.1)
-    rack (3.1.16)
+    rack (3.2.0)
     rack-attack (6.7.0)
       rack (>= 1.0, < 4)
     rack-mini-profiler (4.0.0)
@@ -375,7 +378,7 @@ GEM
       psych (>= 4.0.0)
     redis (5.4.0)
       redis-client (>= 0.22.0)
-    redis-client (0.25.0)
+    redis-client (0.25.2)
       connection_pool
     regexp_parser (2.10.0)
     reline (0.6.1)
@@ -451,7 +454,7 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    sidekiq (8.0.5)
+    sidekiq (8.0.7)
       connection_pool (>= 2.5.0)
       json (>= 2.9.0)
       logger (>= 1.6.2)
@@ -491,6 +494,7 @@ GEM
       railties (>= 7.1)
       thor (~> 1.3.1)
     sqlite3 (2.7.2-arm64-darwin)
+    sqlite3 (2.7.2-x86_64-linux-gnu)
     sshkit (1.24.0)
       base64
       logger
@@ -506,8 +510,10 @@ GEM
       railties (>= 7.0.0)
       tailwindcss-ruby (~> 4.0)
     tailwindcss-ruby (4.1.11-arm64-darwin)
+    tailwindcss-ruby (4.1.11-x86_64-linux-gnu)
     thor (1.3.2)
     thruster (0.1.14-arm64-darwin)
+    thruster (0.1.14-x86_64-linux)
     timeout (0.4.3)
     trailblazer-option (0.1.2)
     turbo-rails (2.0.16)
@@ -544,6 +550,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-23
+  x86_64-linux
 
 DEPENDENCIES
   attr_encrypted
