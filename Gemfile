@@ -5,7 +5,7 @@ ruby "3.2.2"
 gem "rails", "~> 8.0.2"
 gem "propshaft"
 gem "sqlite3", ">= 2.1", group: [ :development, :test ]
-gem "pg", "~> 1.5"
+gem "pg", "~> 1.6"
 gem "puma", ">= 5.0"
 gem "importmap-rails"
 gem "turbo-rails"
